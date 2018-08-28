@@ -1,15 +1,21 @@
+# Additional Setup:
+- In addition to creating a virtual environment and pip installing all the necessary packages as outlined in the requirements.txt file, you will need to set up the database as follows.
+1. Ensure you have postgresql installed
+2. Create the `doctor_service` database
+3. Run all migrations with `python manage.py db migrate && python manage.py db upgrade`
+
 # Design decisions #
 
 :: Technologies
   - SQLAlchemy
     - Lightweight, quick to setup database. 
   - autoenv
-  
+    - You can use this to automatically source the .env file every time you ssh into the app directory, otherwise you'll need to do this on your own.
 
 
 :: Database Architecture
 
-Tables:(see doctor_service_data_architecture.jpg)
+Tables:(**NOTE**: see doctor_service_data_architecture.png)
   - doctor:
     - Set of atomic data representing an Doctor in our system
   - appointment:
