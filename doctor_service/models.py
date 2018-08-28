@@ -3,9 +3,9 @@ from extensions import db
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
-import time
+from datetime import datetime
 
-DATETIME_FORMAT = "%D %I:%M"
+DATETIME_FORMAT = "%m/%d/%Y %H:%M"
 
 make_class_dictable(db.Model)
 

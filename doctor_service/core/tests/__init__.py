@@ -13,7 +13,6 @@ from doctor_service.settings import Test
 class BaseTestCase(TestCase):
 
     def create_app(self):
-        import pdb; pdb.set_trace()
         app = create_app(config=Test)
         return app
 

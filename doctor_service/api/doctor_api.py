@@ -14,12 +14,12 @@ doctor_api = Blueprint("doctor_api", __name__, url_prefix="/doctor")
 
 @doctor_api.route("/", methods=["GET"])
 def get_all_doctors():
-    return jsonify({"doctors": [doctor.as_dict for doctor in db.session.query(Doctor).all()]}), 202
+    return jsonify({"doctors": [doctor.as_dict for doctor in db.session.query(Doctor).all()]}), 200
 
 @doctor_api.route("/<doctor_id>", methods=["GET"])
 def get_doctor(doctor_id):
     doctor = Doctor.query.get_or_404(doctor_id)
-    return jsonify(doctor.as_dict), 202
+    return jsonify(doctor.as_dict), 200
 
 @doctor_api.route("/", methods=["POST"])
 def create_doctor():
@@ -28,7 +28,7 @@ def create_doctor():
     instance = Doctor(name=data.get("name"), isActive=True, locations=locations)
     db.session.add(instance)
     db.session.commit()
-    return jsonify(instance.as_dict), 202
+    return jsonify(instance.as_dict), 200
 
 @doctor_api.route("/<doctor_id>", methods=["PATCH"])
 def update_doctor(doctor_id):
@@ -40,14 +40,14 @@ def update_doctor(doctor_id):
         locations = ingest_locations(data.get("locations"))
         instance.locations = locations
     db.session.commit()
-    return jsonify(instance.as_dict), 202
+    return jsonify(instance.as_dict), 200
 
 @doctor_api.route("/<doctor_id>", methods=["DELETE"])
 def delete_doctor(doctor_id):
     instance = Doctor.query.get_or_404(doctor_id)
     instance.isActive = False
     db.session.commit()
-    return "success", 202
+    return "success", 200
 
 def ingest_locations(addresses):
     locations = []

@@ -20,6 +20,7 @@ class Test(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     DEBUG = True
     DEVELOPMENT = True
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 
 class Production(Config):
